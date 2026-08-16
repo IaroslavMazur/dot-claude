@@ -17,7 +17,7 @@
   "skipAutoPermissionPrompt": true,
   "skipDangerousModePermissionPrompt": true,
   "spinnerTipsEnabled": true,
-  "tui": "fullscreen",
+  "tui": "default",
   "useAutoModeDuringPlan": false,
   "env": {
     "ENABLE_CLAUDEAI_MCP_SERVERS": "false",
