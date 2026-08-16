@@ -71,9 +71,15 @@ complexity.
   clean as fast as you can get it there.
 - For semantic, agent-composed commits, use `$commit`; its deterministic Git mechanics must use `ai-commit`. For
   already-composed fixed-message workflows, call `ai-commit` directly. After committing, follow the `$commit` push
-  workflow. Automatic pushing is authorized for repositories whose GitHub owner is `PaulRBerg`, repositories under
-  `~/work/` or `~/projects/`, and repositories rooted at `~/.claude`, `~/.codex`, `~/.agents`, or
-  `~/.local/share/chezmoi`; the listed paths are mine and require no GitHub-owner check.
+  workflow.
+- Automatic pushing is authorized only when the resolved push destination is a repository I control. Before the first
+  push in a session, resolve it with `git remote get-url --push '@{push}'` and confirm the owner is `IaroslavMazur` or
+  an organization I belong to. Any other owner — including the parent repository of a fork — requires my explicit
+  approval in the conversation. Directory location never authorizes a push by itself: a repository under `~/work/`,
+  `~/projects/`, `~/.claude`, `~/.codex`, `~/.agents`, or `~/.local/share/chezmoi` still has to pass the owner check,
+  because a local path says nothing about where its remotes point.
+- In a fork, the tracked branch must point at my fork, never at the parent. Keep the parent as a separate fetch-only
+  remote and merge from it deliberately.
 
 ### Conflict detection before starting
 
