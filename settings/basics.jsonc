@@ -11,7 +11,7 @@
   "enableAllProjectMcpServers": true,
   "includeCoAuthoredBy": false,
   "includeGitInstructions": false,
-  "model": "opus",
+  "model": "sonnet",
   "showClearContextOnPlanAccept": true,
   "skillListingBudgetFraction": 0.02,
   "skipAutoPermissionPrompt": true,
@@ -22,10 +22,10 @@
   "env": {
     "ENABLE_CLAUDEAI_MCP_SERVERS": "false",
     // Activate MCP tool search when tool definitions exceed 5% of context (default: 10%)
-    "ENABLE_TOOL_SEARCH": "auto:5"
+    "ENABLE_TOOL_SEARCH": "auto:5",
   },
   "statusLine": {
     "command": "~/.local/share/bun/bin/ccstatusline",
-    "type": "command"
-  }
+    "type": "command",
+  },
 }
