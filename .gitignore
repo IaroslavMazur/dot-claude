@@ -34,6 +34,8 @@
 !helpers/**
 !hooks/
 !hooks/**
+!rules/
+!rules/**
 !settings/
 !settings/**
 !skills/

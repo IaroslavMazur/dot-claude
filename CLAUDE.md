@@ -168,56 +168,6 @@ smarter parallelization of agents on the same `main` branch.
   blocker is explicit.
 - Keep files under 1000 lines and test files under 2000.
 
-## Open Source Contribution
-
-- Be proactive about contributing back. Whenever we use, debug, or read the source of an open-source tool and hit a real
-  problem — a bug, a misleading error, a docs gap, a missing feature — raise the contribution as an option: file a
-  GitHub issue, or, when the fix is small and self-contained, implement it and open a PR. Propose a discussion instead
-  when the subject is a question, a design direction, or a "should it work this way?" rather than a defect.
-- Suggest, don't publish. Writing to someone else's repo is outward-facing: surface the opportunity with a concrete
-  title and a one-line body sketch, then wait for my go-ahead. Use `yeet` to publish once I approve.
-- One motivation is my GitHub contribution graph, so prefer actions that count toward it: commits, opening issues,
-  opening PRs, submitting PR reviews, and opening or answering discussions. Comments on existing issues and PRs do not
-  count — offer them as useful, never as contributions.
-- Quality bar over volume. No drive-by PRs, no issues that a search of the existing tracker or a read of the source
-  would have answered. Before proposing, check for duplicates and read the repo's `CONTRIBUTING.md`. A closed-as-spam
-  contribution costs more reputation than the square it fills.
-
-## Tool Discovery
-
-- When a problem surfaces in conversation — a manual workflow, a script we are about to write, a gap in tooling — first
-  ask whether an existing open-source tool already solves it, and say so before building. Use the `tool-finder` skill
-  for a real search rather than recalling from memory; the ecosystem moves faster than training data.
-- Name the candidate and the tradeoff in a line or two, then follow my call. Applies to CLIs, libraries, GitHub Actions,
-  and agent skills alike. Adopting one is a new dependency, so the cooldown rules below apply.
-
-## Dependency Cooldown (Supply Chain)
-
-- A 7-day minimum release age is enforced machine-wide: `~/.npmrc` (`min-release-age=7`, npm >= 11.10), `~/.bunfig.toml`
-  (`[install] minimumReleaseAge = 604800`), `~/.yarnrc.yml` (`npmMinimalAgeGate: 10080`), `~/.config/uv/uv.toml`
-  (`exclude-newer = "7 days"`). Managed in the chezmoi dotfiles.
-- Treat "no matching version" / silently-older resolutions for recent releases as the cooldown working, not a bug: use
-  the newest version older than 7 days, or wait. NEVER bypass it — no `--force`, exclusion lists, registry overrides,
-  CLI flags, or hand-edited lockfiles — without my explicit approval in the conversation.
-- When scaffolding a new project of mine, or adding CI that runs installs, replicate the setting into the repo
-  (`bunfig.toml`, `.npmrc`, `.yarnrc.yml`, `pnpm-workspace.yaml` `minimumReleaseAge: 10080`, or `pyproject.toml`
-  `[tool.uv] exclude-newer`), since global config does not follow the repo to CI or other machines.
-- When adding or editing Renovate/Dependabot config, include the cooldown: Renovate `"minimumReleaseAge": "7 days"`,
-  Dependabot `cooldown: { default-days: 7 }`. Security updates may bypass it.
-- Cargo and Go have no client-side gate yet: never run blanket `cargo update` / `go get -u`; update crates/modules
-  individually (`cargo update <crate> --precise <ver>`) after checking the release is at least 7 days old.
-
-## Git
-
-- **ABSOLUTELY NEVER** run destructive git operations (e.g., `git reset --hard`, `rm`, `git checkout`/`git restore` to
-  an older commit) unless the user gives an explicit, written instruction in this conversation. Treat these commands as
-  catastrophic; if you are even slightly unsure, stop and ask before touching them.
-- When staging or committing, quote any git paths containing brackets or parentheses (e.g., `src/app/[candidate]/**`) so
-  the shell does not treat them as globs or subshells.
-- When running `git rebase`, use the `--no-edit` flag to avoid opening editors and use the default messages
-  automatically.
-- When creating PRs, do NOT include a "Test plan" section in the description unless explicitly asked to.
-
 ## Shell
 
 The Bash tool runs commands under **zsh** (my macOS login shell), ignoring `$SHELL`. Do not use bash-only syntax at the
